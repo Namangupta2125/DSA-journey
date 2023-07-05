@@ -2,7 +2,7 @@
 using namespace std;
 void merge(vector<int>&v,int l,int r,int mid)
 {
-    vector<int>d;
+    vector<int>d;   
     int i = l, j = mid+1;
     while(i<=mid&& j<=r)
     {
