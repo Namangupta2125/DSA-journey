@@ -1,32 +1,31 @@
 #include<bits/stdc++.h>
-#include<iostream>
 using namespace std;
-#define ll long long
-#define ld long double
-int binarysearch(vector<int>v,int target , int l,int r)
+
+int finder(vector<int>&v,int k,int e,int s = 0, int mid = 0)
 {
-    if(l+1 == r)
-    {
-        if(v[l] == target)
-        return l;
-        else if(v[r]==target)
-        return r;
-        else
-        return -1;
-    }
-    int mid = (l+r)/2;
-    if(v[mid] == target)
-    return mid;
-    if(target>v[mid])
-    return binarysearch(v,target,mid,r);
-    else
-    return binarysearch(v,target,l,mid);
+     if(v[mid]==k)
+     return mid;
+     if(s+1 ==e)
+     {
+        if(v[s] ==k)
+        return s;
+        else if(v[e]==k)
+        return e;
+       else return -1;
+     }
+     if(k>v[mid])
+     {
+        finder(v,k,e,mid,(e+s)/2);
+     }
+     else
+     finder(v,k,mid,s,(e+s)/2);
 
 }
+
 int main()
 {
-    
-    vector<int>v{1,2,3,4,5,6};
-    cout<<binarysearch(v,1,0,v.size()-1)<<endl;
-    return 0;
+   vector<int>v{1,2,3,4,5,6,7};
+   cout<<finder(v,3,7);
+
+
 }
