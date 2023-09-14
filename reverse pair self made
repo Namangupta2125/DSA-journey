@@ -1,0 +1,58 @@
+#define ll long long
+class Solution {
+public:
+   long long cont = 0;
+void merge(vector<int>&v,ll start,ll mid,ll end)
+{
+    // counting reverse pair
+   {
+      ll i =start,j = mid+1,l =0;
+      while(i<=mid && j<=end)
+      {
+         if(v[i]>v[j]*2LL)
+         {
+            cont+= mid-i+1;
+            j++;
+         }
+         else
+         {
+            i++;
+         }
+      }
+   }
+    // for real merging
+    vector<int>output(end-start+1,0);
+    ll i = start,j = mid+1,l=0;
+    while(i<=mid && j<=end)
+    {
+        if(v[i]<v[j])
+        {
+            output[l] = v[i];
+            i++;
+        }
+        else
+        {output[l] = v[j];j++;}        
+        l++;
+    }
+    while(i<=mid)
+    {output[l] = v[i];
+    i++;l++;}
+    
+    while(j<=end)
+    {output[l] = v[j];
+    j++;l++;}
+    for(i = start,l=0;i<=end;i++,l++)v[i] = output[l];
+    }  
+   void mergesort(vector<int>&v ,ll start , ll end)
+    {
+        if(start>=end)return;
+        ll mid = (start+end)/2;
+        mergesort(v,start,mid);
+        mergesort(v,mid+1,end);
+        merge(v,start,mid,end);
+    }
+    long long int reversePairs(vector<int>& nums) {
+       mergesort(nums,0,nums.size()-1);
+       return cont;
+    }
+};
