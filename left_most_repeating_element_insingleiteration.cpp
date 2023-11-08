@@ -5,17 +5,18 @@ using namespace std;
 int leftmostrepeating(string b)
 {
 	vector<int>a(257,20000);
+	int res = INT_MAX;
 	for(int i = b.size()-1;i>=0;i--)
 	{
 		if(a[b[i]] == 10000)
 		a[b[i]] = i;
-	    else
+	         else
 		a[b[i]] = 10000;
+	    res = min(res,a[b[i]]);
 	}
-	// for(int i = 0;i<257;i++)
-	// cout<<a[i]<<" ";
-    // cout<<endl;
-	return *min_element(a.begin(),a.end());
+	if(res == 10000)
+	return -1;
+    return res;
 
 }
 int main()
