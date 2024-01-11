@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main()
+{
+    int n;cin>>n;
+    vector<int>v(n,0);
+    for(int i =0;i<n;i++)cin>>v[i];
+
+    vector<int>prev(n,0);
+    vector<int>next(n,0);
+    stack<int>s;
+    for(int i =0;i<n;i++)
+    {
+        while(!s.empty() && v[s.top()]>=v[i])s.pop();
+        if(s.empty())prev[i] = -1;
+        else prev[i] = s.top();
+        s.push(i);
+    }
+    while(!s.empty())s.pop();
+    for(int i =n-1;i>=0;i--)
+    {
+        while(!s.empty() && v[s.top()]>=v[i])s.pop();
+        if(s.empty())next[i] = n;
+        else next[i] = s.top();
+        s.push(i);
+    }
+    int max1 = INT_MIN;
+    for(int i =0;i<n;i++)
+    {
+        if(prev[i] ==-1)
+        {
+            max1 = max(max1,v[i]*next[i]);
+        }
+        else
+        max1 = max(max1,v[i]*(next[i]-prev[i]-1));
+    }
+    for(int i =0;i<n;i++)cout<<prev[i]<<" ";
+    cout<<endl;
+    for(int i =0;i<n;i++)cout<<next[i]<<" ";
+    cout<<max1<<endl;
+}
