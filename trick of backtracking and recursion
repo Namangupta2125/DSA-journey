@@ -1,0 +1,6 @@
+in permutation start loop from  0
+in combination start loop after the current indes
+
+
+in backtracking we just get back to the orignal array or string by undoing the chagne we did before recursive call
+
