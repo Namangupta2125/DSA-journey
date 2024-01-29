@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+class tree{
+    public:
+   int value;
+   tree* left = nullptr;
+   tree* right = nullptr;
+   tree( int k)
+   {
+    value = k;
+   }
+};
+void hieght(tree* root,int& y,int h =0)
+{
+    if(root == nullptr)
+    {
+        y = max(y,h);
+        return;
+    }
+   
+    hieght(root->left,y,h+1);
+    hieght(root->right,y,h+1);
+}
+int main()
+{
+    tree* root = new tree(10);
+    root->left = new tree(20);
+    root->right = new tree(30);
+    root->left->left =new tree(60);
+    root->left->right = new tree(70);
+    root->left->left->left =new tree(160);
+    int y =0;
+    hieght(root,y,0);
+    cout<<y<<endl;
+}
