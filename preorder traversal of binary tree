@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+class tree{
+    public:
+   int value;
+   tree* left = nullptr;
+   tree* right = nullptr;
+   tree( int k)
+   {
+    value = k;
+   }
+};
+void preorder(tree* root)
+{
+    if(root == nullptr)
+    {
+        return;
+    }
+    cout<<root->value<<endl;
+    preorder(root->left);
+    
+    preorder(root->right);
+}
+int main()
+{
+    tree* root = new tree(10);
+    root->left = new tree(20);
+    root->right = new tree(30);
+    root->left->left =new tree(60);
+    root->left->right = new tree(70);
+    preorder(root);
+}
