@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+class tree{
+    public:
+   int val;
+   tree* left = nullptr;
+   tree* right = nullptr;
+   tree( int k)
+   {
+    val = k;
+   }
+};
+int maximum(tree* root)
+{
+   if(root == nullptr)return 0;
+   return max((root->val),(max(maximum(root->left),maximum(root->right))));
+}
+int main()
+{
+    tree* root = new tree(10);
+    root->left = new tree(20);
+    root->right = new tree(30);
+    root->left->left =new tree(60);
+    root->left->right = new tree(70);
+    root->left->left->left =new tree(160);
+    cout<<maximum(root)<<endl;
+    return 0;
+}
